@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programs | Vehirvachnu</title>
+  <meta name="description" content="Vehirvachnu programs: Skver Business Expo and business seminar photos, audio, details, and downloads.">
+  <style>
+    :root {
+      --green-950: #082d17;
+      --green-900: #0d3d20;
+      --green-800: #12522b;
+      --green-700: #176c38;
+      --green-100: #e8f4ec;
+      --gold-500: #e1b72f;
+      --ink: #172016;
+      --muted: #667064;
+      --line: #dce6dc;
+      --paper: #fbfcf8;
+      --white: #ffffff;
+      --shadow: 0 20px 55px rgba(8, 45, 23, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251, 252, 248, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav,
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand img {
+      width: min(250px, 54vw);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .button,
+    .ghost-button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links a,
+    .ghost-button {
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--green-900);
+    }
+
+    .button {
+      border: 1px solid var(--green-800);
+      background: var(--green-800);
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .hero {
+      background:
+        linear-gradient(120deg, rgba(8, 45, 23, .93), rgba(18, 82, 43, .78)),
+        url("assets/expo-hall.png") center / cover no-repeat;
+      color: var(--white);
+    }
+
+    .hero .wrap {
+      min-height: 430px;
+      display: grid;
+      align-items: end;
+      padding: 76px 0 58px;
+    }
+
+    .eyebrow {
+      color: #fff2bf;
+      font-weight: 900;
+      margin: 0 0 12px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 14px;
+      font-size: clamp(40px, 6.4vw, 78px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: rgba(255, 255, 255, .86);
+      font-size: 19px;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-head > div {
+      max-width: 760px;
+    }
+
+    h2 {
+      color: var(--green-950);
+      font-size: clamp(32px, 4.8vw, 58px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+
+    .program-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .image-panel,
+    .details-panel,
+    .media-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 14px 32px rgba(8, 45, 23, .08);
+      overflow: hidden;
+    }
+
+    .image-panel {
+      display: grid;
+      grid-template-rows: minmax(280px, 1fr) auto;
+    }
+
+    .image-panel > img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+    }
+
+    .logo-strip {
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      background: var(--green-950);
+      padding: 22px;
+    }
+
+    .logo-strip img {
+      max-width: min(310px, 90%);
+      max-height: 92px;
+      object-fit: contain;
+    }
+
+    .details-panel {
+      padding: 26px;
+    }
+
+    .details-panel h3,
+    .media-panel h3 {
+      color: var(--green-900);
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .detail {
+      min-height: 94px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f7faf5;
+      padding: 16px;
+    }
+
+    .detail strong {
+      display: block;
+      color: var(--green-950);
+      margin-bottom: 6px;
+    }
+
+    .detail span {
+      color: var(--muted);
+    }
+
+    .expo-showcase {
+      display: grid;
+      grid-template-columns: minmax(280px, .42fr) minmax(0, .58fr);
+      gap: 18px;
+      margin-top: 20px;
+      align-items: start;
+    }
+
+    .gallery-panel,
+    .recordings-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 14px 32px rgba(8, 45, 23, .08);
+      padding: 22px;
+    }
+
+    .gallery-head,
+    .recordings-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .gallery-head h3,
+    .recordings-head h3 {
+      color: var(--green-900);
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .gallery-head p,
+    .recordings-head p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--green-100);
+      aspect-ratio: 4 / 3;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .2s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .photo-card:nth-child(1),
+    .photo-card:nth-child(8),
+    .photo-card:nth-child(17),
+    .photo-card:nth-child(31),
+    .photo-card:nth-child(44) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .media-panel {
+      padding: 22px;
+    }
+
+    .media-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .recording-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .recording-list h4 {
+      color: var(--green-950);
+      font-size: 17px;
+      margin: 0 0 2px;
+    }
+
+    .media-item {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 12px;
+    }
+
+    .media-item img {
+      width: 100%;
+      height: 190px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: var(--green-100);
+    }
+
+    .media-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--green-950);
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    .audio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .empty {
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--white);
+    }
+
+    .seminar-band {
+      background: #eef6eb;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .seminar-media {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .seminar-photo {
+      min-height: 320px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(8, 45, 23, .08);
+    }
+
+    .seminar-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .coming-soon {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 14px 32px rgba(8, 45, 23, .08);
+      padding: 24px;
+      color: var(--muted);
+    }
+
+    .coming-soon h3 {
+      color: var(--green-900);
+      margin-bottom: 8px;
+    }
+
+    footer {
+      padding: 26px 0;
+      background: #061f10;
+      color: rgba(255, 255, 255, .72);
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .nav,
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .program-layout,
+      .expo-showcase,
+      .seminar-media,
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 540px) {
+      .nav-links,
+      .nav-links a,
+      .button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Program navigation">
+      <a class="brand" href="Vehirvachnu Website.html" aria-label="Vehirvachnu home">
+        <img src="assets/vehirvachnu-logo.png" alt="Vehirvachnu">
+      </a>
+      <div class="nav-links">
+        <a href="Vehirvachnu Website.html">Home</a>
+        <a href="#expo">Expo</a>
+        <a href="#seminar">Seminar</a>
+        <a href="businesses.html">Businesses</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Community programs</p>
+        <h1>Expo and seminar resources in one place.</h1>
+        <p>Explore the Expo gallery, listen to recordings, and view the seminar materials in a finished public layout.</p>
+        <div class="quick-links">
+          <a class="button" href="#expo">Open Expo</a>
+          <a class="ghost-button" href="#seminar">Open Seminar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="expo" aria-labelledby="expo-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="expo-title">Skver Business Expo</h2>
+            <p class="lead">A community business expo for meeting vendors, seeing ideas, and helping local businesses grow.</p>
+          </div>
+        </div>
+
+        <div class="program-layout">
+          <div class="image-panel">
+            <img src="assets/expo-hall.png" alt="Skver Business Expo hall">
+            <div class="logo-strip">
+              <img src="assets/expo-logo.png" alt="Skver Expo logo">
+            </div>
+          </div>
+
+          <div class="details-panel">
+            <h3>What this page can show</h3>
+            <p>The Expo section can hold booth pictures, event highlights, speeches, audio recordings, and downloadable files from the event.</p>
+            <div class="details-grid">
+              <div class="detail">
+                <strong>Photos</strong>
+                <span>Expo hall, booths, signs, speakers, and community moments.</span>
+              </div>
+              <div class="detail">
+                <strong>Audio</strong>
+                <span>Speeches, interviews, announcements, and event recordings.</span>
+              </div>
+              <div class="detail">
+                <strong>Downloads</strong>
+                <span>Visitors can download pictures and audio files.</span>
+              </div>
+              <div class="detail">
+                <strong>Future details</strong>
+                <span>Date, location, vendors, schedule, and sponsor information.</span>
+              </div>
+            </div>
+            <a class="button" href="businesses.html">View Business Directory</a>
+          </div>
+        </div>
+
+        <div class="expo-showcase">
+          <div class="recordings-panel">
+            <div class="recordings-head">
+              <div>
+                <h3>Expo Recordings</h3>
+                <p>Listen to the Expo sessions and download each recording.</p>
+              </div>
+            </div>
+            <div class="recording-list" aria-label="Expo recordings">
+              <article class="media-item">
+                <h4>Menachem Hoffman, CEO Ptex Group</h4>
+                <audio controls src="assets/audio/expo/menachem-hoffman-ptex-group.mp3"></audio>
+                <div class="audio-actions">
+                  <a class="ghost-button" href="assets/audio/expo/menachem-hoffman-ptex-group.mp3" download>Download Audio</a>
+                </div>
+              </article>
+              <article class="media-item">
+                <h4>Volvy Mendlowitz, Heritage Silver</h4>
+                <audio controls src="assets/audio/expo/volvy-mendlowitz-heritage-silver.mp3"></audio>
+                <div class="audio-actions">
+                  <a class="ghost-button" href="assets/audio/expo/volvy-mendlowitz-heritage-silver.mp3" download>Download Audio</a>
+                </div>
+              </article>
+              <article class="media-item">
+                <h4>Elimelech Gross, Pini Gluck, Naftuli Schnitzler</h4>
+                <audio controls src="assets/audio/expo/elimelech-gross-pini-gluck-naftuli-schnitzler.mp3"></audio>
+                <div class="audio-actions">
+                  <a class="ghost-button" href="assets/audio/expo/elimelech-gross-pini-gluck-naftuli-schnitzler.mp3" download>Download Audio</a>
+                </div>
+              </article>
+              <article class="media-item">
+                <h4>Chesky Brisk, Shulem Berkowitz, Aron Kaufman</h4>
+                <audio controls src="assets/audio/expo/chesky-brisk-shulem-berkowitz-aron-kaufman.mp3"></audio>
+                <div class="audio-actions">
+                  <a class="ghost-button" href="assets/audio/expo/chesky-brisk-shulem-berkowitz-aron-kaufman.mp3" download>Download Audio</a>
+                </div>
+              </article>
+              <article class="media-item">
+                <h4>Sponsors of the Expo, led by Ben Halprin</h4>
+                <audio controls src="assets/audio/expo/sponsors-of-the-expo-ben-halprin.mp3"></audio>
+                <div class="audio-actions">
+                  <a class="ghost-button" href="assets/audio/expo/sponsors-of-the-expo-ben-halprin.mp3" download>Download Audio</a>
+                </div>
+              </article>
+              <article class="media-item">
+                <h4>R' Zisha Novoseller</h4>
+                <audio controls src="assets/audio/expo/r-zisha-novoseller.mp3"></audio>
+                <div class="audio-actions">
+                  <a class="ghost-button" href="assets/audio/expo/r-zisha-novoseller.mp3" download>Download Audio</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="gallery-panel">
+            <div class="gallery-head">
+              <div>
+                <h3>Expo Gallery</h3>
+                <p>Click any photo to open it full size.</p>
+              </div>
+            </div>
+            <div id="expoGallery" class="photo-gallery" aria-label="Expo picture gallery"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seminar" class="seminar-band" aria-labelledby="seminar-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="seminar-title">Business Seminar</h2>
+            <p class="lead">A focused seminar for practical business ideas, guidance, planning, finance, and community support.</p>
+          </div>
+        </div>
+
+        <div class="program-layout">
+          <div class="image-panel">
+            <img src="assets/seminar-room.jpg" alt="Business seminar room">
+            <div class="logo-strip">
+              <img src="assets/seminar-logo.png" alt="Business Seminar logo">
+            </div>
+          </div>
+
+          <div class="details-panel">
+            <h3>What this page can show</h3>
+            <p>The Seminar section can hold photos from the room, handouts, speaker audio, classes, and recordings for people who want to review later.</p>
+            <div class="details-grid">
+              <div class="detail">
+                <strong>Classes</strong>
+                <span>Business building, finance, planning, and practical community guidance.</span>
+              </div>
+              <div class="detail">
+                <strong>Audio</strong>
+                <span>Seminar speeches and lessons that people can listen to and download.</span>
+              </div>
+              <div class="detail">
+                <strong>Images</strong>
+                <span>Room setup, flyers, speaker photos, and event highlights.</span>
+              </div>
+              <div class="detail">
+                <strong>Future details</strong>
+                <span>Speaker names, topics, schedule, location, and registration info.</span>
+              </div>
+            </div>
+            <a class="button" href="Vehirvachnu Website.html#finance">View Savings Ideas</a>
+          </div>
+        </div>
+
+        <div class="seminar-media">
+          <div class="seminar-photo">
+            <img src="assets/seminar-room.jpg" alt="Business seminar room prepared for attendees">
+          </div>
+          <div class="coming-soon">
+            <h3>Seminar Recordings</h3>
+            <p>Audio recordings and additional seminar materials will appear here when they are available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Copyright <span id="year"></span> Vehirvachnu</span>
+      <span>Expo and seminar programs</span>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector("#year").textContent = new Date().getFullYear();
+
+    function renderExpoGallery() {
+      const target = document.querySelector("#expoGallery");
+      const pngPhotos = new Set([1, 58, 61]);
+      const photos = Array.from({ length: 64 }, (_, index) => {
+        const number = index + 1;
+        const ext = pngPhotos.has(number) ? "png" : "jpg";
+        const file = `expo-photo-${String(number).padStart(2, "0")}.${ext}`;
+        return `assets/expo-gallery/${file}`;
+      });
+
+      target.innerHTML = photos.map((src, index) => `
+        <article class="photo-card">
+          <a href="${src}" target="_blank" rel="noopener">
+            <img src="${src}" alt="Skver Business Expo photo ${index + 1}" loading="lazy">
+          </a>
+        </article>
+      `).join("");
+    }
+    renderExpoGallery();
+  </script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Business Directory | Vehirvachnu</title>
+  <meta name="description" content="Search the Vehirvachnu community business directory by name, phone number, or information.">
+  <style>
+    :root {
+      --green-950: #082d17;
+      --green-900: #0d3d20;
+      --green-800: #12522b;
+      --green-700: #176c38;
+      --green-100: #e8f4ec;
+      --gold-500: #e1b72f;
+      --ink: #172016;
+      --muted: #667064;
+      --line: #dce6dc;
+      --paper: #fbfcf8;
+      --white: #ffffff;
+      --shadow: 0 20px 55px rgba(8, 45, 23, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(251, 252, 248, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav,
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand img {
+      width: min(250px, 54vw);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .button,
+    .ghost-button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links a,
+    .ghost-button {
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--green-900);
+    }
+
+    .button {
+      border: 1px solid var(--green-800);
+      background: var(--green-800);
+      color: var(--white);
+    }
+
+    .hero {
+      background:
+        linear-gradient(120deg, rgba(8, 45, 23, .95), rgba(18, 82, 43, .86)),
+        url("assets/vehirvachnu-logo.png") right 10% center / min(560px, 78vw) no-repeat;
+      color: var(--white);
+    }
+
+    .hero .wrap {
+      min-height: 360px;
+      display: grid;
+      align-items: end;
+      padding: 74px 0 56px;
+    }
+
+    .eyebrow {
+      color: #fff2bf;
+      font-weight: 900;
+      margin: 0 0 12px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 14px;
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 670px;
+      color: rgba(255, 255, 255, .84);
+      font-size: 19px;
+    }
+
+    main {
+      padding: 42px 0 84px;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .search {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
+      font-size: 17px;
+      padding: 0 16px;
+      box-shadow: 0 10px 24px rgba(8, 45, 23, .06);
+    }
+
+    .count {
+      color: var(--green-900);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .directory {
+      display: grid;
+      gap: 12px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 58px minmax(180px, 1.1fr) minmax(180px, 1.2fr) minmax(180px, 1.3fr);
+      gap: 16px;
+      align-items: center;
+      background: var(--white);
+      border: 0;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 12px 28px rgba(8, 45, 23, .07);
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--green-800), var(--gold-500));
+      color: var(--white);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .name {
+      color: var(--green-950);
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 8px;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: var(--green-100);
+      color: var(--green-900);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .phones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .phones a,
+    .phones span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #f6f8f3;
+      border: 0;
+      color: var(--green-800);
+      font-size: 14px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .info {
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .info a {
+      color: var(--green-800);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .empty {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 26px 0;
+      background: #061f10;
+      color: rgba(255, 255, 255, .72);
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .tools,
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .logo {
+        width: 46px;
+        height: 46px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .nav-links,
+      .nav-links a,
+      .button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      .hero .wrap {
+        min-height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Directory navigation">
+      <a class="brand" href="Vehirvachnu Website.html" aria-label="Vehirvachnu home">
+        <img src="assets/vehirvachnu-logo.png" alt="Vehirvachnu">
+      </a>
+      <div class="nav-links">
+        <a href="Vehirvachnu Website.html">Home</a>
+        <a href="programs.html">Programs</a>
+        <a href="Vehirvachnu Website.html#finance">Savings</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Community business directory</p>
+        <h1>Find local businesses and community services.</h1>
+        <p>Search by business name, phone number, address, email, or contact information. Phone numbers are clickable on mobile.</p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <div class="tools">
+        <input id="search" class="search" type="search" placeholder="Search businesses, phone numbers, or info" aria-label="Search businesses">
+        <span id="count" class="count"></span>
+      </div>
+      <div id="directory" class="directory"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Copyright <span id="year"></span> Vehirvachnu</span>
+      <span>Business directory</span>
+    </div>
+  </footer>
+
+  <script src="business-data.js"></script>
+  <script>
+    const directory = document.querySelector("#directory");
+    const search = document.querySelector("#search");
+    const count = document.querySelector("#count");
+    const businesses = window.communityBusinesses || [];
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+
+    function initials(name) {
+      return name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0].toUpperCase())
+        .join("");
+    }
+
+    function phoneHref(phone) {
+      const digits = phone.replace(/[^0-9]/g, "");
+      return digits.length >= 7 ? `tel:${digits}` : "";
+    }
+
+    function render(items) {
+      count.textContent = `${items.length} listed`;
+      directory.innerHTML = "";
+
+      if (!items.length) {
+        directory.innerHTML = '<p class="empty">No businesses found. Try another search.</p>';
+        return;
+      }
+
+      items.forEach((business) => {
+        const row = document.createElement("article");
+        row.className = "row";
+        const phoneLinks = business.phones.map((phone) => {
+          const href = phoneHref(phone);
+          return href ? `<a href="${href}">${phone}</a>` : `<span>${phone}</span>`;
+        }).join("");
+        const info = business.email
+          ? `<a href="mailto:${business.email}">${business.info}</a>`
+          : business.info || "Information coming soon";
+
+        row.innerHTML = `
+          <div class="logo" aria-hidden="true">${initials(business.name)}</div>
+          <div>
+            <div class="name">${business.name}</div>
+            <span class="tag">${business.notes}</span>
+          </div>
+          <div class="phones">${phoneLinks}</div>
+          <div class="info">${info}</div>
+        `;
+        directory.appendChild(row);
+      });
+    }
+
+    function filter() {
+      const query = search.value.trim().toLowerCase();
+      const filtered = businesses.filter((business) => {
+        return [
+          business.name,
+          business.info,
+          business.notes,
+          business.email,
+          ...(business.phones || [])
+        ].join(" ").toLowerCase().includes(query);
+      });
+      render(filtered);
+    }
+
+    search.addEventListener("input", filter);
+    render(businesses);
+  </script>
+</body>
+</html>
