@@ -75,12 +75,12 @@
 
     .nav-links {
       display: flex;
-      gap: 8px;
+      gap: clamp(18px, 3vw, 34px);
       flex-wrap: wrap;
       justify-content: flex-end;
+      align-items: center;
     }
 
-    .nav-links a,
     .button,
     .ghost-button {
       min-height: 42px;
@@ -96,7 +96,36 @@
       white-space: nowrap;
     }
 
-    .nav-links a,
+    .nav-links a {
+      position: relative;
+      color: var(--green-900);
+      font-weight: 900;
+      font-size: 17px;
+      line-height: 1;
+      text-decoration: none;
+      padding: 9px 0;
+      white-space: nowrap;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 1px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--gold-500);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .18s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
     .ghost-button {
       border: 1px solid var(--line);
       background: var(--white);
@@ -495,7 +524,6 @@
     }
 
     @media (max-width: 540px) {
-      .nav-links,
       .nav-links a,
       .button,
       .ghost-button {
@@ -511,11 +539,11 @@
 <body>
   <header class="topbar">
     <nav class="nav" aria-label="Program navigation">
-      <a class="brand" href="Vehirvachnu Website.html" aria-label="Vehirvachnu home">
+      <a class="brand" href="index.html" aria-label="Vehirvachnu home">
         <img src="assets/vehirvachnu-logo.png" alt="Vehirvachnu">
       </a>
       <div class="nav-links">
-        <a href="Vehirvachnu Website.html">Home</a>
+        <a href="index.html">Home</a>
         <a href="#expo">Expo</a>
         <a href="#seminar">Seminar</a>
         <a href="businesses.html">Businesses</a>
@@ -685,7 +713,7 @@
                 <span>Speaker names, topics, schedule, location, and registration info.</span>
               </div>
             </div>
-            <a class="button" href="Vehirvachnu Website.html#finance">View Savings Ideas</a>
+            <a class="button" href="index.html#finance">View Savings Ideas</a>
           </div>
         </div>
 
